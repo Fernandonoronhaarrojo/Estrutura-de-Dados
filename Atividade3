@@ -1,0 +1,54 @@
+package vetors;
+
+public interface IVetorAluno {
+    void adiciona(Aluno aluno);
+    int tamanho();
+    boolean contem(Aluno aluno);
+}
+
+public class Aluno {
+    private String nome;
+    private double nota;
+
+    public Aluno(String nome, double nota) {
+        this.nome = nome;
+        this.nota = nota;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public double getNota() {
+        return nota;
+    }
+}
+
+public class VetorAluno implements IVetorAluno {
+    private Aluno alunos[] = new Aluno[5];
+    private int totalAlunos = 0;
+
+    @Override
+    public void adiciona(Aluno aluno) {
+        if (totalAlunos < alunos.length) {
+            alunos[totalAlunos++] = aluno;
+        } else {
+            System.out.println("O vetor de alunos está cheio.");
+        }
+    }
+
+    @Override
+    public int tamanho() {
+        return totalAlunos;
+    }
+
+    @Override
+    public boolean contem(Aluno aluno) {
+        for (Aluno a : alunos) {
+            if (a != null && a.equals(aluno)) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
